@@ -15,7 +15,7 @@ public class DestroyPlatform : MonoBehaviour
        
     }
 
-    void fallDown()
+    public void fallDown()
     {
         GetComponentInParent<Rigidbody>().useGravity = true;
         GetComponentInParent<Rigidbody>().isKinematic = false;
