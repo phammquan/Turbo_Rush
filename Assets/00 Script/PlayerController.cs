@@ -20,14 +20,26 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !gameOver)
+        // if (Input.GetKey(KeyCode.Space) && !gameOver)
+        // {
+        //     changeDir();
+        // }
+        //
+        // if (Input.GetKeyUp(KeyCode.Space))
+        // {
+        //     right = !right;
+        // }
+        if (Input.touchCount > 0 && !gameOver)
         {
-            changeDir();
-        }
-
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            right = !right;
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Stationary)
+            {
+                changeDir();
+            }
+            if(touch.phase == TouchPhase.Ended)
+            {
+                right = !right;                
+            }
         }
 
         Move();
@@ -57,7 +69,7 @@ public class PlayerController : MonoBehaviour
         int numRays = 10; 
         float checkDistance = 1f; 
         int raysHitPlatform = 0;
-
+    
         for (int i = 0; i < numRays; i++)
         {
             Vector3 offset = new Vector3(0,0,i * 0.2f - (numRays / 2) * 0.2f);
@@ -65,14 +77,14 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.DrawRay(transform.position + offset, Vector3.down * checkDistance, Color.green);
                 Debug.Log("Raycast hit: " + hit.collider.tag);
-
+    
                 if (hit.collider.tag == "Platform")
                 {
                     raysHitPlatform++;
                 }
             }
         }
-
+    
         gameOver = (raysHitPlatform == 0);
     }
 }

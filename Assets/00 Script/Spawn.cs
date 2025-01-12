@@ -28,13 +28,22 @@ public class Spawn : MonoBehaviour
             {
                 GameObject _temp;
                 _temp = Instantiate(_platform, new Vector3(size, 0, size1), Quaternion.identity);
+                _temp.transform.SetParent(this.transform);
+                
                 if (size == rows * sz.z - 2)
                 {
                     size = 0;
                 }
                 else
                 {
-                    size += sz.z;
+                    if (size == -(colums * sz.x - 2))
+                    {
+                        size = 0;
+                    }
+                    else
+                    {
+                        size -= sz.z;
+                    }
                 }
                 platforms.Push(_temp);
             }

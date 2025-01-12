@@ -341,6 +341,7 @@ MonoBehaviour:
   _platform: {fileID: 262154605999184315, guid: f5c354aaf0465a749afdd974a3175b5b, type: 3}
   colums: 3
   rows: 3
+  sz: {x: 0, y: 0, z: 0}
 --- !u!4 &1256833398
 Transform:
   m_ObjectHideFlags: 0
