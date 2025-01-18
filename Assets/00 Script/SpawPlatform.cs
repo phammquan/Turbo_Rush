@@ -51,7 +51,9 @@ public class SpawPlatform : MonoBehaviour
     {
         Vector3 pos = lastPos;
         pos.z += _size.z;
-        Instantiate(_platform, pos, Quaternion.identity);
+        GameObject g = Object_Pooling.Instance.GetPrefabs(_platform);
+        g.transform.position = pos;
+        g.SetActive(true);
         lastPos = pos;
     }
 
@@ -59,7 +61,9 @@ public class SpawPlatform : MonoBehaviour
     {
         Vector3 pos = lastPos;
         pos.x += _size.x;
-        Instantiate(_platform, pos, Quaternion.identity);
+        GameObject g = Object_Pooling.Instance.GetPrefabs(_platform);
+        g.transform.position = pos;
+        g.SetActive(true);
         lastPos = pos;
     }
 }

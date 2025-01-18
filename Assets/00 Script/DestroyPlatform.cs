@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class DestroyPlatform : MonoBehaviour
 {
+    public void OnEnable()
+    {
+        GetComponentInParent<Rigidbody>().useGravity = false;
+        GetComponentInParent<Rigidbody>().isKinematic = true;
+    }
+    
 
     private void OnTriggerExit(Collider other)
     {
@@ -19,7 +25,10 @@ public class DestroyPlatform : MonoBehaviour
     {
         GetComponentInParent<Rigidbody>().useGravity = true;
         GetComponentInParent<Rigidbody>().isKinematic = false;
-        Destroy(transform.parent.gameObject, 2f);
-        
+        StartCoroutine(deActive());
+    }
+    IEnumerator deActive(){
+        yield return new WaitForSeconds(1f);
+        this.transform.parent.gameObject.SetActive(false);
     }
 }
