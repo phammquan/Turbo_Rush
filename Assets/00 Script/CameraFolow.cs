@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class CameraFolow : MonoBehaviour
 {
-    [SerializeField] GameObject _player;
-    [SerializeField] Vector3 _offset;
-    [SerializeField] private float rateLerp;
+    [SerializeField] GameObject _player; // truy cập đến player
+    [SerializeField] Vector3 _offset; //khoảng cách giữa player và camera
+    [SerializeField] private float rateLerp; // tốc độ di chuyển của camera
     public bool gameOver;
 
     void Start()
