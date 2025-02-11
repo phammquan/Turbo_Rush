@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platform: {fileID: 262154605999184315, guid: f5c354aaf0465a749afdd974a3175b5b, type: 3}
   _player: {fileID: 765325976}
+  _diamond: {fileID: 1357624143207442951, guid: 951203f75f2318a4f9b1bb200e893a21, type: 3}
   _time: 0.5
 --- !u!4 &74908041
 Transform:
@@ -591,7 +592,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd01a43eb119904c8024429764cace4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefabs: {fileID: 0}
 --- !u!4 &1335013259
 Transform:
   m_ObjectHideFlags: 0

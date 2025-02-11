@@ -36,9 +36,17 @@ public class PlayerController : MonoBehaviour
             {
                 changeDir();
             }
-            if(touch.phase == TouchPhase.Ended)
+            // if(touch.phase == TouchPhase.Ended)
+            // {
+            //     right = !right;                
+            // }
+            if (touch.position.x < Screen.width / 2)
             {
-                right = !right;                
+                right = false;
+            }
+            else
+            {
+                right = true;
             }
         }
 

@@ -6,12 +6,12 @@ public class SpawPlatform : MonoBehaviour
 {
     [SerializeField] GameObject _platform;
     [SerializeField] GameObject _player;
-    
+    [SerializeField] GameObject _diamond;
 
     private Vector3 lastPos;
 
     private Vector3 _size;
-    
+
     [SerializeField] private float _time;
     private float checkSpaw;
 
@@ -26,7 +26,7 @@ public class SpawPlatform : MonoBehaviour
     void Update()
     {
         checkSpaw -= Time.deltaTime;
-        
+
         if (checkSpaw <= 0 && _player.GetComponent<PlayerController>().gameOver == false)
         {
             Spaw();
@@ -55,6 +55,7 @@ public class SpawPlatform : MonoBehaviour
         g.transform.position = pos;
         g.SetActive(true);
         lastPos = pos;
+        SpawDiamond(g);
     }
 
     void SpawRight()
@@ -65,5 +66,18 @@ public class SpawPlatform : MonoBehaviour
         g.transform.position = pos;
         g.SetActive(true);
         lastPos = pos;
+        SpawDiamond(g);
+    }
+
+    void SpawDiamond(GameObject _platformSpaw)
+    {
+        int rand = Random.Range(0, 15);
+        if (rand <= 3)
+        {
+            GameObject obj = Object_Pooling.Instance.GetPrefabs(_diamond);
+            obj.transform.position = _platformSpaw.transform.position;
+            obj.transform.position += new Vector3(0, 1, 0);
+            obj.SetActive(true);
+        }
     }
 }
