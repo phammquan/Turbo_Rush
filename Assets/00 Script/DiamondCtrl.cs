@@ -15,6 +15,7 @@ public class DiamondCtrl : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("trigger");
             GameObject vfx = Object_Pooling.Instance.GetPrefabs(VFX);
             vfx.transform.position = this.transform.position;
             vfx.SetActive(true);

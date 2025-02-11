@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(transform.position + offset, Vector3.down, out RaycastHit hit, checkDistance))
             {
                 Debug.DrawRay(transform.position + offset, Vector3.down * checkDistance, Color.green);
-                Debug.Log("Raycast hit: " + hit.collider.tag);
     
                 if (hit.collider.tag == "Platform")
                 {

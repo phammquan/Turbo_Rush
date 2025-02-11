@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class DestroyPlatform : MonoBehaviour
 {
+    private Rigidbody rigiParent;
+
+    private void Awake()
+    {
+        rigiParent = GetComponentInParent<Rigidbody>();
+    }
+
     public void OnEnable()
     {
-        GetComponentInParent<Rigidbody>().useGravity = false;
-        GetComponentInParent<Rigidbody>().isKinematic = true;
+        rigiParent.useGravity = false;
+        rigiParent.isKinematic = true;
     }
-    
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -18,16 +25,17 @@ public class DestroyPlatform : MonoBehaviour
         {
             fallDown();
         }
-       
     }
 
     public void fallDown()
     {
-        GetComponentInParent<Rigidbody>().useGravity = true;
-        GetComponentInParent<Rigidbody>().isKinematic = false;
+        rigiParent.useGravity = true;
+        rigiParent.isKinematic = false;
         StartCoroutine(deActive());
     }
-    IEnumerator deActive(){
+
+    IEnumerator deActive()
+    {
         yield return new WaitForSeconds(2f);
         this.transform.parent.gameObject.SetActive(false);
     }

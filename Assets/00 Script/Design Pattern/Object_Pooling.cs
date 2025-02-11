@@ -29,6 +29,5 @@ public class Object_Pooling : Singleton<Object_Pooling>
         _listGameObject.Add(defaultGameobject, newList);
         return newObject;
     }
-    
-    
+
 }
