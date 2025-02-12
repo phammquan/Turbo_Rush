@@ -55,7 +55,11 @@ public class SpawPlatform : MonoBehaviour
         g.transform.position = pos;
         g.SetActive(true);
         lastPos = pos;
-        SpawDiamond(g);
+        int rand = Random.Range(0, 15);
+        if (rand <= 3)
+        {
+            SpawDiamond(g);
+        }
     }
 
     void SpawRight()
@@ -66,18 +70,18 @@ public class SpawPlatform : MonoBehaviour
         g.transform.position = pos;
         g.SetActive(true);
         lastPos = pos;
-        SpawDiamond(g);
+        int rand = Random.Range(0, 15);
+        if (rand <= 3)
+        {
+            SpawDiamond(g);
+        }
     }
 
     void SpawDiamond(GameObject _platformSpaw)
     {
-        int rand = Random.Range(0, 15);
-        if (rand <= 3)
-        {
-            GameObject obj = Object_Pooling.Instance.GetPrefabs(_diamond);
-            obj.transform.position = _platformSpaw.transform.position;
-            obj.transform.position += new Vector3(0, 1, 0);
-            obj.SetActive(true);
-        }
+        GameObject obj = Object_Pooling.Instance.GetPrefabs(_diamond);
+        obj.transform.position = _platformSpaw.transform.position;
+        obj.transform.position += new Vector3(0, 1, 0);
+        obj.SetActive(true);
     }
 }
