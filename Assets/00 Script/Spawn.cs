@@ -50,15 +50,10 @@ public class Spawn : MonoBehaviour
             size1 += sz.x;
         }
     }
-    void DestroyPlatform()
-    {
-        StartCoroutine(InDestroy());
-        
-    }
     IEnumerator StartDes()
     {
         yield return new WaitForSeconds(5f);
-        DestroyPlatform();
+        InDestroy();
     }
     IEnumerator InDestroy()
     {

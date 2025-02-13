@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7423673404348930619}
   - component: {fileID: 2064784144018690050}
   - component: {fileID: 1493652213607611944}
-  - component: {fileID: -5534933307670273854}
+  - component: {fileID: 6151363341714226167}
   m_Layer: 0
   m_Name: HitDiamond
   m_TagString: Untagged
@@ -54,7 +54,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4765,7 +4765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearBehavior: 2
+  clearBehavior: 1
   cameraShake:
     enabled: 0
     useMainCamera: 1
@@ -4898,7 +4898,7 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 0
   fadeOutReference: {fileID: 0}
---- !u!114 &-5534933307670273854
+--- !u!114 &6151363341714226167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4910,7 +4910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f9ad63df0c33894e98a7425dcf00fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lifeTime: 1
+  _lifeTime: 0.5
 --- !u!1 &2790495849941322913
 GameObject:
   m_ObjectHideFlags: 0

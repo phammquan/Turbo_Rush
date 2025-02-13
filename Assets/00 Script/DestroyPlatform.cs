@@ -36,7 +36,7 @@ public class DestroyPlatform : MonoBehaviour
 
     IEnumerator deActive()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f);
         this.transform.parent.gameObject.SetActive(false);
     }
 }
