@@ -9,4 +9,5 @@ public class TrapCtrl : MonoBehaviour
     {
      this.transform.Rotate(Vector3.up * _velocity * Time.deltaTime);   
     }
+    
 }

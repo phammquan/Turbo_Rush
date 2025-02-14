@@ -6,11 +6,6 @@ using UnityEngine;
 public class DiamondCtrl : MonoBehaviour
 {
     [SerializeField] GameObject VFX;
-    private GameObject vfx; 
-    private void Start()
-    {
-        vfx = Object_Pooling.Instance.GetPrefabs(VFX);
-    }
 
     private void Update()
     {
@@ -22,16 +17,11 @@ public class DiamondCtrl : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("trigger");
-            if (vfx != null)
-            {
-                vfx.transform.position = this.transform.position;
-                vfx.SetActive(true);
 
-            }
-            else
-            {
-                Debug.Log("null");
-            }
+            GameObject vfx = Object_Pooling.Instance.GetPrefabs(VFX);
+            vfx.transform.position = this.transform.position;
+            vfx.SetActive(true);
+
             this.gameObject.SetActive(false);
         }
     }

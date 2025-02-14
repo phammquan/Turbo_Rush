@@ -5,83 +5,136 @@ using UnityEngine;
 public class SpawPlatform : MonoBehaviour
 {
     [SerializeField] GameObject _platform;
+    [SerializeField] GameObject _platformTrap;
     [SerializeField] GameObject _player;
     [SerializeField] GameObject _diamond;
+    [SerializeField] GameObject _trap;
 
     private Vector3 lastPos;
 
     private Vector3 _size;
+    private Vector3 _sizeTrap;
 
     [SerializeField] private float _time;
-    private float checkSpaw;
+    private float checkSpawn;
+    private int countDiamond;
+    public int count;
+    private bool checkTrap = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        checkSpaw = _time;
+        checkSpawn = _time;
         lastPos = _platform.transform.position;
         _size = _platform.transform.localScale;
+        _sizeTrap = _platformTrap.transform.localScale;
     }
 
     void Update()
     {
-        checkSpaw -= Time.deltaTime;
+        checkSpawn -= Time.deltaTime;
 
-        if (checkSpaw <= 0 && _player.GetComponent<PlayerController>().gameOver == false)
+        if (checkSpawn <= 0 && _player.GetComponent<PlayerController>().gameOver == false)
         {
-            Spaw();
-            checkSpaw = _time;
+            Spawn();
+            checkSpawn = _time;
         }
     }
 
-    void Spaw()
+    void Spawn()
     {
         int rand = Random.Range(0, 6);
+        int rand1 = Random.Range(0, 15);
+
         if (rand <= 3)
         {
-            SpawLeft();
+            SpawnLeft();
+            if (countDiamond == count)
+            {
+                Observer.Notify("SpawnTrap", lastPos);
+                countDiamond = 0;
+            }
+            else if (rand1 <= 3)
+            {
+                Observer.Notify("SpawnDiamond", lastPos);
+                countDiamond++;
+            }
+            
         }
         else
         {
-            SpawRight();
+            SpawnRight();
+            if (countDiamond == count)
+            {
+                Observer.Notify("SpawnTrap", lastPos);
+                countDiamond = 0;
+            }
+            else if (rand <= 3)
+            {
+                Observer.Notify("SpawnDiamond", lastPos);
+                countDiamond++;
+            }
         }
     }
 
-    void SpawLeft()
+    void SpawnLeft()
     {
         Vector3 pos = lastPos;
-        pos.z += _size.z;
-        GameObject g = Object_Pooling.Instance.GetPrefabs(_platform);
-        g.transform.position = pos;
-        g.SetActive(true);
-        lastPos = pos;
-        int rand = Random.Range(0, 15);
-        if (rand <= 3)
+        GameObject g;
+        
+        if (countDiamond == count)
         {
-            SpawDiamond(g);
+            pos.z += (_sizeTrap.z * 0.5f) + (_size.z * 0.5f); 
+            g = Object_Pooling.Instance.GetPrefabs(_platformTrap);
+            g.transform.position = pos;
+            lastPos = g.transform.position;
+            checkTrap = true;
+
         }
+        else
+        {
+            pos.z += _size.z;
+            g = Object_Pooling.Instance.GetPrefabs(_platform);
+            g.transform.position = pos;
+            if (checkTrap)
+            {
+                g.transform.position += new Vector3(0, 0, 0.5f);
+                checkTrap = false;
+            }
+            lastPos = g.transform.position;
+        }
+        g.transform.rotation = Quaternion.identity;
+        g.SetActive(true);
+
     }
 
-    void SpawRight()
+    void SpawnRight()
     {
         Vector3 pos = lastPos;
-        pos.x += _size.x;
-        GameObject g = Object_Pooling.Instance.GetPrefabs(_platform);
-        g.transform.position = pos;
-        g.SetActive(true);
-        lastPos = pos;
-        int rand = Random.Range(0, 15);
-        if (rand <= 3)
+        GameObject g;
+        if (countDiamond == count)
         {
-            SpawDiamond(g);
-        }
-    }
+            pos.x += (_sizeTrap.x * 0.5f) + (_size.x * 0.5f); 
+            g = Object_Pooling.Instance.GetPrefabs(_platformTrap);
+            g.transform.position = pos;
+            lastPos = g.transform.position;
+            checkTrap= true;
 
-    void SpawDiamond(GameObject _platformSpaw)
-    {
-        GameObject obj = Object_Pooling.Instance.GetPrefabs(_diamond);
-        obj.transform.position = _platformSpaw.transform.position;
-        obj.transform.position += new Vector3(0, 1, 0);
-        obj.SetActive(true);
+        }
+        else
+        {
+            pos.x += _size.x;
+            g = Object_Pooling.Instance.GetPrefabs(_platform);
+            g.transform.position = pos;
+            if (checkTrap)
+            {
+                g.transform.position += new Vector3(0.5f, 0, 0);
+                checkTrap = false;
+            }
+            lastPos = g.transform.position;
+        }
+        g.transform.rotation = Quaternion.identity;
+        g.SetActive(true);
+        
     }
 }

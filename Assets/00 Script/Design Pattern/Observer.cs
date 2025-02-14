@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-public class Observer : Singleton<Observer>
+public class Observer : MonoBehaviour
 {
     static Dictionary<string, List<Action<object[]>>> _listAction = new Dictionary<string, List<Action<object[]>>>();
 

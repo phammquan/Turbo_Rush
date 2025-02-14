@@ -52,8 +52,8 @@ public class Spawn : MonoBehaviour
     }
     IEnumerator StartDes()
     {
-        yield return new WaitForSeconds(5f);
-        InDestroy();
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(InDestroy());
     }
     IEnumerator InDestroy()
     {
@@ -61,7 +61,7 @@ public class Spawn : MonoBehaviour
         {
             GameObject temp = platforms.Pop();
             temp.transform.GetChild(0).GetComponent<DestroyPlatform>().fallDown();
-            yield return new WaitForSeconds(0.5f); // Adjust the delay as needed
+            yield return new WaitForSeconds(0.5f); 
         }
     }
 }

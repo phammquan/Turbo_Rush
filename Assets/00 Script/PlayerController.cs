@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool right = true;
     [SerializeField] float _speedRotation = 100f;
     [Space] public bool gameOver;
+    private bool gameRuning = false;
 
     void Start()
     {
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
         // }
         if (Input.touchCount > 0 && !gameOver)
         {
+            gameRuning = true;
+            Observer.Notify("ContinueGame", gameRuning);
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Stationary)
             {
