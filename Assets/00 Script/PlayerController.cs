@@ -21,15 +21,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKey(KeyCode.Space) && !gameOver)
-        // {
-        //     changeDir();
-        // }
-        //
-        // if (Input.GetKeyUp(KeyCode.Space))
-        // {
-        //     right = !right;
-        // }
         if (Input.touchCount > 0 && !gameOver)
         {
             gameRuning = true;
@@ -39,10 +30,6 @@ public class PlayerController : MonoBehaviour
             {
                 changeDir();
             }
-            // if(touch.phase == TouchPhase.Ended)
-            // {
-            //     right = !right;                
-            // }
             if (touch.position.x < Screen.width / 2)
             {
                 right = false;
@@ -52,7 +39,6 @@ public class PlayerController : MonoBehaviour
                 right = true;
             }
         }
-
         Move();
         checkGameOver();
     }

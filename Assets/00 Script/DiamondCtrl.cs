@@ -10,19 +10,28 @@ public class DiamondCtrl : MonoBehaviour
     private void Update()
     {
         transform.Rotate(Vector3.up * 100 * Time.deltaTime);
+        checkParent();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("trigger");
-
             GameObject vfx = Object_Pooling.Instance.GetPrefabs(VFX);
             vfx.transform.position = this.transform.position;
             vfx.SetActive(true);
 
             this.gameObject.SetActive(false);
+        }
+    }
+    void checkParent()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
+        {
+            if (hit.collider.CompareTag("Platform"))
+            {
+                this.transform.SetParent(hit.transform);
+            }
         }
     }
 }
