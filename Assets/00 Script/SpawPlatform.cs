@@ -45,35 +45,27 @@ public class SpawPlatform : MonoBehaviour
     {
         int rand = Random.Range(0, 6);
         int rand1 = Random.Range(0, 15);
-
-        if (rand <= 3)
+        if (countDiamond == count)
         {
-            SpawnLeft();
-            if (countDiamond == count)
-            {
-                Observer.Notify("SpawnTrap", lastPos);
-                countDiamond = 0;
-            }
-            else if (rand1 <= 3)
+            Observer.Notify("SpawnTrap", lastPos);
+            countDiamond = 0;
+        }
+        else
+        {
+            if (rand1 <= 3)
             {
                 Observer.Notify("SpawnDiamond", lastPos);
                 countDiamond++;
             }
+        }
+        if (rand <= 3)
+        {
+            SpawnLeft();
             
         }
         else
         {
             SpawnRight();
-            if (countDiamond == count)
-            {
-                Observer.Notify("SpawnTrap", lastPos);
-                countDiamond = 0;
-            }
-            else if (rand <= 3)
-            {
-                Observer.Notify("SpawnDiamond", lastPos);
-                countDiamond++;
-            }
         }
     }
 
@@ -81,15 +73,14 @@ public class SpawPlatform : MonoBehaviour
     {
         Vector3 pos = lastPos;
         GameObject g;
-        
+
         if (countDiamond == count)
         {
-            pos.z += (_sizeTrap.z * 0.5f) + (_size.z * 0.5f); 
+            pos.z += (_sizeTrap.z * 0.5f) + (_size.z * 0.5f);
             g = Object_Pooling.Instance.GetPrefabs(_platformTrap);
             g.transform.position = pos;
             lastPos = g.transform.position;
             checkTrap = true;
-
         }
         else
         {
@@ -101,11 +92,12 @@ public class SpawPlatform : MonoBehaviour
                 g.transform.position += new Vector3(0, 0, 0.5f);
                 checkTrap = false;
             }
+
             lastPos = g.transform.position;
         }
+
         g.transform.rotation = Quaternion.identity;
         g.SetActive(true);
-
     }
 
     void SpawnRight()
@@ -114,12 +106,11 @@ public class SpawPlatform : MonoBehaviour
         GameObject g;
         if (countDiamond == count)
         {
-            pos.x += (_sizeTrap.x * 0.5f) + (_size.x * 0.5f); 
+            pos.x += (_sizeTrap.x * 0.5f) + (_size.x * 0.5f);
             g = Object_Pooling.Instance.GetPrefabs(_platformTrap);
             g.transform.position = pos;
             lastPos = g.transform.position;
-            checkTrap= true;
-
+            checkTrap = true;
         }
         else
         {
@@ -131,10 +122,11 @@ public class SpawPlatform : MonoBehaviour
                 g.transform.position += new Vector3(0.5f, 0, 0);
                 checkTrap = false;
             }
+
             lastPos = g.transform.position;
         }
+
         g.transform.rotation = Quaternion.identity;
         g.SetActive(true);
-        
     }
 }

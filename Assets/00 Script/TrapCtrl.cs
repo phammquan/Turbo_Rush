@@ -7,6 +7,11 @@ public class TrapCtrl : MonoBehaviour
 {
     [SerializeField] float _velocity;
 
+    private void OnEnable()
+    {
+        this.transform.SetParent(null);
+    }
+
     void Update()
     {
         this.transform.Rotate(Vector3.up * _velocity * Time.deltaTime);
