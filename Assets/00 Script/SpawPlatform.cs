@@ -52,7 +52,7 @@ public class SpawPlatform : MonoBehaviour
         // }
         // else
         // {
-        if (rand1 <= 3)
+        if (rand1 <= 3 && !checkTrap)
         {
             Observer.Notify("SpawnDiamond", lastPos);
             countDiamond++;
@@ -81,9 +81,9 @@ public class SpawPlatform : MonoBehaviour
             g.transform.position = pos;
             lastPos = g.transform.position;
             checkTrap = true;
-            if (g.transform.childCount == 2)
+            countDiamond = 0;
+            if (g.transform.childCount <= 2)
             {
-                countDiamond = 0;
                 Observer.Notify("SpawnTrap", lastPos);
             }
         }
@@ -116,9 +116,9 @@ public class SpawPlatform : MonoBehaviour
             g.transform.position = pos;
             lastPos = g.transform.position;
             checkTrap = true;
-            if (g.transform.childCount == 2)
+            countDiamond = 0;
+            if (g.transform.childCount <= 2)
             {
-                countDiamond = 0;
                 Observer.Notify("SpawnTrap", lastPos);
             }
         }

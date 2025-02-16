@@ -10,7 +10,7 @@ public class DiamondCtrl : MonoBehaviour
     private void Update()
     {
         transform.Rotate(Vector3.up * 100 * Time.deltaTime);
-        //checkParent();
+        checkDrop();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,14 +24,16 @@ public class DiamondCtrl : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
-    // void checkParent()
-    // {
-    //     if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 1f))
-    //     {
-    //         if (hit.collider.CompareTag("Platform"))
-    //         {
-    //             this.transform.SetParent(hit.transform);
-    //         }
-    //     }
-    // }
+    void checkDrop()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f))
+        {
+            if (hit.collider.CompareTag("Platform")) return;
+            else
+            {
+                this.gameObject.SetActive(false);
+            }
+            
+        }
+    }
 }

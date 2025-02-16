@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     }
     void UpdateDistanceText(object[] datas)
     {
-        float _distance = (float)Math.Round((float)datas[0], 1);
+        float _distance = (float)Math.Round((float)datas[0]);
         _distanceText.text = _distance + "m";
     }
 }
