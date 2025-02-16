@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _rigi;
-    [SerializeField] float _speed = 10.0f;
+    [SerializeField] float _speed ;
     private Vector3 _direction;
-    public bool right = true;
+    private bool right = true;
     [SerializeField] float _speedRotation = 100f;
     [Space] public bool gameOver;
     private bool gameRuning = false;
@@ -72,8 +72,6 @@ public class PlayerController : MonoBehaviour
             Vector3 offset = new Vector3(0,0,i * 0.2f - (numRays / 2) * 0.2f);
             if (Physics.Raycast(transform.position + offset, Vector3.down, out RaycastHit hit, checkDistance))
             {
-                Debug.DrawRay(transform.position + offset, Vector3.down * checkDistance, Color.green);
-    
                 if (hit.collider.tag == "Platform")
                 {
                     raysHitPlatform++;
