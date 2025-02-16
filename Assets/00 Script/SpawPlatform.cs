@@ -45,23 +45,23 @@ public class SpawPlatform : MonoBehaviour
     {
         int rand = Random.Range(0, 6);
         int rand1 = Random.Range(0, 15);
-        if (countDiamond == count)
+        // if (countDiamond == count)
+        // {
+        //     countDiamond = 0;
+        //     Observer.Notify("SpawnTrap", lastPos);
+        // }
+        // else
+        // {
+        if (rand1 <= 3)
         {
-            Observer.Notify("SpawnTrap", lastPos);
-            countDiamond = 0;
+            Observer.Notify("SpawnDiamond", lastPos);
+            countDiamond++;
         }
-        else
-        {
-            if (rand1 <= 3)
-            {
-                Observer.Notify("SpawnDiamond", lastPos);
-                countDiamond++;
-            }
-        }
+
+        // }
         if (rand <= 3)
         {
             SpawnLeft();
-            
         }
         else
         {
@@ -81,6 +81,11 @@ public class SpawPlatform : MonoBehaviour
             g.transform.position = pos;
             lastPos = g.transform.position;
             checkTrap = true;
+            if (g.transform.childCount == 2)
+            {
+                countDiamond = 0;
+                Observer.Notify("SpawnTrap", lastPos);
+            }
         }
         else
         {
@@ -111,6 +116,11 @@ public class SpawPlatform : MonoBehaviour
             g.transform.position = pos;
             lastPos = g.transform.position;
             checkTrap = true;
+            if (g.transform.childCount == 2)
+            {
+                countDiamond = 0;
+                Observer.Notify("SpawnTrap", lastPos);
+            }
         }
         else
         {
