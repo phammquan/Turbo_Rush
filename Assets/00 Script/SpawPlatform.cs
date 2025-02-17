@@ -7,8 +7,6 @@ public class SpawPlatform : MonoBehaviour
     [SerializeField] GameObject _platform;
     [SerializeField] GameObject _platformTrap;
     [SerializeField] GameObject _player;
-    [SerializeField] GameObject _diamond;
-    [SerializeField] GameObject _trap;
 
     private Vector3 lastPos;
 
@@ -45,20 +43,12 @@ public class SpawPlatform : MonoBehaviour
     {
         int rand = Random.Range(0, 6);
         int rand1 = Random.Range(0, 15);
-        // if (countDiamond == count)
-        // {
-        //     countDiamond = 0;
-        //     Observer.Notify("SpawnTrap", lastPos);
-        // }
-        // else
-        // {
         if (rand1 <= 3 && !checkTrap)
         {
             Observer.Notify("SpawnDiamond", lastPos);
             countDiamond++;
         }
 
-        // }
         if (rand <= 3)
         {
             SpawnLeft();

@@ -31,6 +31,7 @@ public class DestroyPlatform : MonoBehaviour
     {
         rigiParent.useGravity = true;
         rigiParent.isKinematic = false;
+        if(!this.transform.parent.gameObject.activeSelf) return;
         StartCoroutine(deActive());
     }
 
