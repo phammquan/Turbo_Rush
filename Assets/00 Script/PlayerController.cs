@@ -63,22 +63,27 @@ public class PlayerController : MonoBehaviour
 
     public void checkGameOver()
     {
-        int numRays = 10; 
-        float checkDistance = 1f; 
+        int numRaysX = 5;
+        int numRaysZ = 9;
+        float checkDistance = 1f;
         int raysHitPlatform = 0;
-    
-        for (int i = 0; i < numRays; i++)
+
+        for (int i = 0; i < numRaysX; i++)
         {
-            Vector3 offset = new Vector3(0,0,i * 0.2f - (numRays / 2) * 0.2f);
-            if (Physics.Raycast(transform.position + offset, Vector3.down, out RaycastHit hit, checkDistance))
+            for (int j = 0; j < numRaysZ; j++)
             {
-                if (hit.collider.tag == "Platform")
+                Vector3 offset = new Vector3(i * 0.2f - (numRaysX / 2) * 0.2f, 0, j * 0.2f - (numRaysZ / 2) * 0.2f);
+                Vector3 origin = transform.position + offset;
+                if (Physics.Raycast(origin, Vector3.down, out RaycastHit hit, checkDistance))
                 {
-                    raysHitPlatform++;
+                    if (hit.collider.tag == "Platform")
+                    {
+                        raysHitPlatform++;
+                    }
                 }
             }
         }
-    
         gameOver = (raysHitPlatform == 0);
+        Observer.Notify("GameOver", gameOver);
     }
 }

@@ -34,7 +34,7 @@ public class SpawPlatform : MonoBehaviour
     {
         checkSpawn -= Time.deltaTime;
 
-        if (checkSpawn <= 0 && _player.GetComponent<PlayerController>().gameOver == false)
+        if (checkSpawn <= 0 && GameManager.Instance._GameOver == false)
         {
             Spawn();
             checkSpawn = _time;

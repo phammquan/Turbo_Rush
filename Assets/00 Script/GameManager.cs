@@ -5,15 +5,18 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    private bool _gameOver;
+    public bool _GameOver => _gameOver;
     private int _diamondCount = 0;
-    
     private float _distance = 0;
     
     void Start()
     {
+        _gameOver = false;
         Time.timeScale = 0f;
         Observer.AddListener("ContinueGame", ContinueGame);
         Observer.AddListener("DiamondCount", DiamondCount);
+        Observer.AddListener("GameOver", GameOver);
     }
 
     private void Update()
@@ -32,7 +35,12 @@ public class GameManager : Singleton<GameManager>
     }
     void CalcuDistance(object[] datas)
     {
+        if(_gameOver) return;
         _distance = 3 * Time.time;
         Observer.Notify("UpdateDistanceText", _distance);
+    }
+    void GameOver(object[] datas)
+    {
+        _gameOver = (bool)datas[0];
     }
 }

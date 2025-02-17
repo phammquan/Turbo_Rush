@@ -18,7 +18,7 @@ public class CameraFolow : MonoBehaviour
     void Update()
     {
         
-        if(!_player.GetComponent<PlayerController>().gameOver)
+        if(!GameManager.Instance._GameOver)
         {
             CameraMove();
         }
