@@ -155,8 +155,8 @@ MonoBehaviour:
   _platform: {fileID: 262154605999184315, guid: f5c354aaf0465a749afdd974a3175b5b, type: 3}
   _platformTrap: {fileID: 7385169620970310960, guid: 5ef893314ddef3e4ab2dceab2a5a9d7a, type: 3}
   _player: {fileID: 765325976}
-  _diamond: {fileID: 1357624143207442951, guid: 951203f75f2318a4f9b1bb200e893a21, type: 3}
-  _trap: {fileID: 4099397040201197858, guid: 3bf17f027d5e80c41b6d2a64053a52ab, type: 3}
+  _diamond: {fileID: 8468483093365470486, guid: ab9b5008e9ba1cf4ca7bb8726bc85e04, type: 3}
+  _trap: {fileID: 8950445838271360023, guid: 0165d30d6d698d14ca6213038d7cc84e, type: 3}
   _time: 0.5
   count: 3
 --- !u!4 &74908041
@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c282fde4082c71d4dbb884745d004f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _trap: {fileID: 4099397040201197858, guid: 3bf17f027d5e80c41b6d2a64053a52ab, type: 3}
+  _trap: {fileID: 8950445838271360023, guid: 0165d30d6d698d14ca6213038d7cc84e, type: 3}
 --- !u!4 &243732590
 Transform:
   m_ObjectHideFlags: 0
@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f3244d7b624d0439b9578b09b37f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _diamond: {fileID: 1357624143207442951, guid: 951203f75f2318a4f9b1bb200e893a21, type: 3}
+  _diamond: {fileID: 8468483093365470486, guid: ab9b5008e9ba1cf4ca7bb8726bc85e04, type: 3}
 --- !u!4 &1820561662
 Transform:
   m_ObjectHideFlags: 0
