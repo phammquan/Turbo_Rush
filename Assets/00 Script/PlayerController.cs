@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        InputControler();
+        Move();
+        checkGameOver();
+    }
+
+    void InputControler()
+    {
         if (Input.touchCount > 0 && !gameOver)
         {
             gameRuning = true;
@@ -39,8 +46,6 @@ public class PlayerController : MonoBehaviour
                 right = true;
             }
         }
-        Move();
-        checkGameOver();
     }
 
     void Move()
@@ -51,8 +56,7 @@ public class PlayerController : MonoBehaviour
             this.transform.position += _direction * _speed * Time.deltaTime;
         }
     }
-
-
+    
     void changeDir()
     {
         Quaternion rotation = this.transform.rotation;
@@ -86,4 +90,5 @@ public class PlayerController : MonoBehaviour
         gameOver = (raysHitPlatform == 0);
         Observer.Notify("GameOver", gameOver);
     }
+    
 }
