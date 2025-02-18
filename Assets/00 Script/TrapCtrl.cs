@@ -6,6 +6,7 @@ using UnityEngine;
 public class TrapCtrl : MonoBehaviour
 {
     [SerializeField] float _velocity;
+    [SerializeField] GameObject _vfx;
 
     private void OnEnable()
     {
@@ -28,5 +29,25 @@ public class TrapCtrl : MonoBehaviour
             }
         }
     }
-    
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            foreach (ContactPoint contact in other.contacts)
+            {
+                Vector3 collisionPoint = contact.point;
+                GameObject vfxInstance = Object_Pooling.Instance.GetPrefabs(_vfx);
+                if (vfxInstance != null)
+                {
+                    vfxInstance.transform.position = collisionPoint;
+                    vfxInstance.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning("VFX instance is null. Check Object Pooling setup.");
+                }
+            }
+        }        
+    }
 }
