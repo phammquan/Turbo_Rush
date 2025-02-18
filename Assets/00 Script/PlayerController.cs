@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody _rigi;
     [SerializeField] float _speed ;
     private Vector3 _direction;
     private bool right = true;
@@ -15,7 +14,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameOver = false;
-        _rigi = GetComponent<Rigidbody>();
         _direction = transform.forward;
     }
 
