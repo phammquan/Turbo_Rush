@@ -9,15 +9,23 @@ public class ChangeModel : MonoBehaviour
     [SerializeField] Button _buttonBack;
     [SerializeField] Button _buttonNext;
     [SerializeField] Button _buttonPlay;
-    private int _selectionIndex;
+    [SerializeField] Button _buttonBuy;
+    [SerializeField] int _selectionIndex;
     [SerializeField] int _maxIndex;
 
-    void Start()
+    void Awake()
     {
+        Observer.Notify("ChangeModel", _selectionIndex);
+        Observer.AddListener("CheckUnlock", CheckUnlock);
         _selectionIndex = 0;
         _buttonBack.onClick.AddListener(Back);
         _buttonNext.onClick.AddListener(Next);
-        _buttonPlay.onClick.AddListener(() => { SceneManager.LoadScene("Game"); });
+        _buttonPlay.onClick.AddListener(() =>
+        {
+            SceneManager.LoadScene("Game");
+            PlayerPrefs.SetInt("Model",_selectionIndex);
+            PlayerPrefs.Save();
+        });
     }
 
     void Back()
@@ -33,8 +41,6 @@ public class ChangeModel : MonoBehaviour
         }
 
         Observer.Notify("ChangeModel", _selectionIndex);
-        PlayerPrefs.SetInt("Model", _selectionIndex);
-        PlayerPrefs.Save();
     }
 
     void Next()
@@ -50,7 +56,19 @@ public class ChangeModel : MonoBehaviour
         }
 
         Observer.Notify("ChangeModel", _selectionIndex);
-        PlayerPrefs.SetInt("Model", _selectionIndex);
-        PlayerPrefs.Save();
+    }
+
+    void CheckUnlock(object[] datas)
+    {
+        if (!(bool)datas[0])
+        {
+            _buttonPlay.interactable = false;
+            _buttonBuy.interactable = true;
+        }
+        else
+        {
+            _buttonPlay.interactable = true;
+            _buttonBuy.interactable = false;
+        }
     }
 }

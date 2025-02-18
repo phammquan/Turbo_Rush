@@ -6,6 +6,8 @@ public class ModelSelect : MonoBehaviour
 {
     [SerializeField] List<GameObject> _modelList;
     private int _selectionIndex;
+    private bool _unLock;
+
     void Start()
     {
         Observer.AddListener("ChangeModel", Select);
@@ -17,17 +19,28 @@ public class ModelSelect : MonoBehaviour
             model.gameObject.SetActive(false);
         }
         _modelList[_selectionIndex].SetActive(true);
+        if (_modelList[_selectionIndex] != null)
+        {
+            _unLock = _modelList[_selectionIndex].GetComponent<UnLock>().unLock;
+            Observer.Notify("CheckUnlock", _unLock);
+
+        }
     }
-    
+
     public void Select(object[] datas)
     {
-        // if((int)datas[0] == _selectionIndex) return;
-        // if((int)datas[0] < 0 || (int)datas[0] >= _modelList.Count) return;
-        // _modelList[_selectionIndex].SetActive(false);
-        // _selectionIndex = (int)datas[0];
-        // _modelList[_selectionIndex].SetActive(true);
         _modelList[_selectionIndex].SetActive(false);
         _modelList[(int)datas[0]].SetActive(true);
         _selectionIndex = (int)datas[0];
+        if (!_modelList[_selectionIndex].gameObject.GetComponent<UnLock>().unLock)
+        {
+            _unLock = false;
+            Observer.Notify("CheckUnlock", _unLock);
+        }
+        else
+        {
+            _unLock = true;
+            Observer.Notify("CheckUnlock", _unLock);
+        }
     }
 }
