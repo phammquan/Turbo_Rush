@@ -30,6 +30,7 @@ public class UIChangeModel : MonoBehaviour
         {
             SceneManager.LoadScene("Game");
         });
+        _buttonBuy.onClick.AddListener(Buy);
     }
 
     void Back()
@@ -80,5 +81,12 @@ public class UIChangeModel : MonoBehaviour
             _buttonPlay.interactable = true;
             _buttonBuy.interactable = false;
         }
+    }
+
+    void Buy()
+    {
+        Observer.Notify("Buy", _selectionIndex);
+        _textDiamond.text = PlayerPrefs.GetInt("Diamond").ToString();
+        Observer.Notify("ChangeModel", _selectionIndex);
     }
 }
