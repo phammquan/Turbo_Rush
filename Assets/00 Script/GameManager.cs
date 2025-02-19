@@ -31,6 +31,7 @@ public class GameManager : Singleton<GameManager>
     void DiamondCount(object[] datas)
     {
         _diamondCount++;
+        PlayerPrefs.SetInt("Diamond", _diamondCount);
         Observer.Notify("UpdateDiamondText", _diamondCount);
     }
     void CalcuDistance(object[] datas)

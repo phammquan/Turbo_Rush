@@ -1,30 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ChangeModel : MonoBehaviour
+public class UIChangeModel : MonoBehaviour
 {
+    [Header("Button")]
     [SerializeField] Button _buttonBack;
     [SerializeField] Button _buttonNext;
     [SerializeField] Button _buttonPlay;
     [SerializeField] Button _buttonBuy;
-    [SerializeField] int _selectionIndex;
+    [Space]
+    [Header("Text")]
+    [SerializeField] TextMeshProUGUI _textDiamond;
+    private int _selectionIndex;
     [SerializeField] int _maxIndex;
 
     void Awake()
     {
         Observer.Notify("ChangeModel", _selectionIndex);
         Observer.AddListener("CheckUnlock", CheckUnlock);
+        _textDiamond.text = PlayerPrefs.GetInt("Diamond").ToString();
         _selectionIndex = 0;
         _buttonBack.onClick.AddListener(Back);
         _buttonNext.onClick.AddListener(Next);
         _buttonPlay.onClick.AddListener(() =>
         {
             SceneManager.LoadScene("Game");
-            PlayerPrefs.SetInt("Model",_selectionIndex);
-            PlayerPrefs.Save();
         });
     }
 
@@ -41,6 +45,9 @@ public class ChangeModel : MonoBehaviour
         }
 
         Observer.Notify("ChangeModel", _selectionIndex);
+        PlayerPrefs.SetInt("Model",_selectionIndex);
+        PlayerPrefs.Save();
+
     }
 
     void Next()
@@ -56,6 +63,9 @@ public class ChangeModel : MonoBehaviour
         }
 
         Observer.Notify("ChangeModel", _selectionIndex);
+        PlayerPrefs.SetInt("Model",_selectionIndex);
+        PlayerPrefs.Save();
+
     }
 
     void CheckUnlock(object[] datas)
