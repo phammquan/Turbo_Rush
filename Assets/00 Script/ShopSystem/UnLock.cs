@@ -9,14 +9,21 @@ public class UnLock : MonoBehaviour
     public SOPlayerData playerData;
     public bool unLock;
     public int price;
-    private void Start()
+    
+    private void Awake()
     {
+        unLock = playerData.unLock;
         price = playerData.price;
         Observer.AddListener("BuyComplete", UpdateUnlock);
     }
-
+    
     private void UpdateUnlock(object[] obj)
     {
-        unLock = true;
+        int purchasedIndex = (int)obj[0];
+        if (gameObject == ShopSystem.Instance.GetCarByIndex(purchasedIndex))
+        {
+            unLock = true;
+            playerData.unLock = true;
+        }
     }
 }

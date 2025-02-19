@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0113ae3a41524794d9a0acb2b8ab4e15, type: 3}
   m_Name: Beadtall
   m_EditorClassIdentifier: 
-  price: 2
+  price: 0
+  unLock: 1

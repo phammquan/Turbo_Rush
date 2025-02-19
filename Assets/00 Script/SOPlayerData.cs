@@ -6,4 +6,6 @@ using UnityEngine;
 public class SOPlayerData : ScriptableObject
 {
     public int price;
+    public bool unLock;
+    
 }

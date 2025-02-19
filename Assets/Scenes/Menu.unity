@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b655de9ccd1598b4095e8b628d0942f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: ffc7189325f61e6459ea374654392bed, type: 2}
+  playerData: {fileID: 11400000, guid: a64f57e74d3249b4d94208e7818c0992, type: 2}
   unLock: 0
   price: 0
 --- !u!1 &938237938
@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: ffc7189325f61e6459ea374654392bed, type: 2}
-  unLock: 1
+  unLock: 0
   price: 0
 --- !u!1 &1470234439
 GameObject:
@@ -1967,7 +1967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b655de9ccd1598b4095e8b628d0942f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: ffc7189325f61e6459ea374654392bed, type: 2}
+  playerData: {fileID: 11400000, guid: c9462e4a0788a0d41b368aea2c8ee380, type: 2}
   unLock: 0
   price: 0
 --- !u!1 &1550625201
@@ -2367,7 +2367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b655de9ccd1598b4095e8b628d0942f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: ffc7189325f61e6459ea374654392bed, type: 2}
+  playerData: {fileID: 11400000, guid: 69dd2f978658dc7458b8c7d1a0fb44cc, type: 2}
   unLock: 0
   price: 0
 --- !u!1 &2145018741
