@@ -710,7 +710,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 409784192}
-  - component: {fileID: 409784191}
   m_Layer: 0
   m_Name: UITween
   m_TagString: Untagged
@@ -718,22 +717,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &409784191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 409784190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7e087e913904b64fa7d44629d421557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _btnShop: {fileID: 1511658053}
-  _buttonPlay: {fileID: 0}
-  _cameraZ: -10
-  EaseType: 28
 --- !u!4 &409784192
 Transform:
   m_ObjectHideFlags: 0
@@ -793,9 +776,9 @@ RectTransform:
   - {fileID: 1550625202}
   m_Father: {fileID: 918621642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -616.99994, y: -548}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1165, y: -621.82}
   m_SizeDelta: {x: 229.09998, y: 140.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &494998778
@@ -1172,9 +1155,9 @@ RectTransform:
   - {fileID: 1252375294}
   m_Father: {fileID: 918621642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 616.99994, y: -548}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1165, y: -621.82}
   m_SizeDelta: {x: 229.09998, y: 140.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &763429163
@@ -1377,7 +1360,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &918621642
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2450,7 +2433,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1819576327
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2466,9 +2449,9 @@ RectTransform:
   - {fileID: 103084021}
   m_Father: {fileID: 918621642}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -10, y: -1016.5383}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -10, y: -1070}
   m_SizeDelta: {x: 467.2, y: 140.80005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819576328
@@ -3108,6 +3091,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _btnShop: {fileID: 1511658053}
   _buttonPlay: {fileID: 612923763}
+  _buttonBuy: {fileID: 1819576328}
+  _buttonBack: {fileID: 494998778}
+  _buttonNext: {fileID: 763429163}
+  _openShop: 0
   _cameraZ: -7
   EaseType: 27
 --- !u!1660057539 &9223372036854775807
