@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Racer
   m_EditorClassIdentifier: 
   price: 10
-  unLock: 1
+  unLock: 0

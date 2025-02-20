@@ -12,6 +12,7 @@ public class UIChangeModel : MonoBehaviour
     [SerializeField] Button _buttonNext;
     [SerializeField] Button _buttonPlay;
     [SerializeField] Button _buttonBuy;
+    
     [Space]
     [Header("Text")]
     [SerializeField] TextMeshProUGUI _textDiamond;
@@ -89,4 +90,5 @@ public class UIChangeModel : MonoBehaviour
         _textDiamond.text = PlayerPrefs.GetInt("Diamond").ToString();
         Observer.Notify("ChangeModel", _selectionIndex);
     }
+    
 }

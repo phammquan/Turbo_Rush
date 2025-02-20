@@ -5,11 +5,17 @@ using UnityEngine;
 public class ShopSystem : Singleton<ShopSystem>
 {
     [SerializeField] private List<GameObject> _listPrice = new List<GameObject>();
+    [SerializeField] private Dictionary<int, GameObject> _carDictionary = new Dictionary<int, GameObject>();
+
     private int _currentDiamond;
     void Start()
     {
         Observer.AddListener("Buy", Buy);
         _currentDiamond = PlayerPrefs.GetInt("Diamond");
+        for (int i = 0; i < _listPrice.Count; i++)
+        {
+            _carDictionary[i] = _listPrice[i];
+        }
     }
 
     private void Buy(object[] datas)
@@ -19,6 +25,7 @@ public class ShopSystem : Singleton<ShopSystem>
         {
             _currentDiamond -= price;
             PlayerPrefs.SetInt("Diamond", _currentDiamond);
+            PlayerPrefs.Save();
             Observer.Notify("BuyComplete", (int)datas[0]);
         }
         else
@@ -28,10 +35,6 @@ public class ShopSystem : Singleton<ShopSystem>
     }
     public GameObject GetCarByIndex(int index)
     {
-        if (index >= 0 && index < _listPrice.Count)
-        {
-            return _listPrice[index];
-        }
-        return null;
+        return _carDictionary.ContainsKey(index) ? _carDictionary[index] : null;
     }
 }
