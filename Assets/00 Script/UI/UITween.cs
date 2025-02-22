@@ -32,14 +32,7 @@ public class UITween : MonoBehaviour
             Debug.Log("Shop");
             if (LeanTween.isTweening())
                 return;
-            if(!_openShop) 
-                _UIShop.gameObject.SetActive(true);
-            else
-                _UIShop.gameObject.SetActive(false);
-            // if(!_openShop)   
-            //     _buttonBuy.gameObject.SetActive(true);
-            // else
-            //     _buttonBuy.gameObject.SetActive(false);
+            _UIShop.gameObject.SetActive(_openShop ? false : true);
             LeanTween.moveLocalY(_NameInGame.gameObject, _openShop ? posName.y : posName.y + 190, 0.5f).setEase(EaseType);
             LeanTween.scale(_inforShop, _openShop ? new Vector3(0, 0, 0) : new Vector3(1, 1, 1), 1f).setEase(EaseType);
 
