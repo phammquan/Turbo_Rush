@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 1
   unLock: 1
-  Hp: 50
+  Hp: 40
   Speed: 3

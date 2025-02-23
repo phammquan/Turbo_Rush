@@ -9,6 +9,9 @@ public class GameManager : Singleton<GameManager>
     public bool _GameOver => _gameOver;
     private int _diamondCount = 0;
     private float _distance = 0;
+    private int _diamondData = 0;
+    private float _time = 0;
+
     
     void Start()
     {
@@ -31,13 +34,17 @@ public class GameManager : Singleton<GameManager>
     void DiamondCount(object[] datas)
     {
         _diamondCount++;
-        PlayerPrefs.SetInt("Diamond", _diamondCount);
+        PlayerPrefs.SetInt("DiamondCount", _diamondCount);
         Observer.Notify("UpdateDiamondText", _diamondCount);
+        _diamondData = PlayerPrefs.GetInt("Diamond");
+        _diamondData ++;
+        PlayerPrefs.SetInt("Diamond", _diamondData);
+        PlayerPrefs.Save(); 
     }
     void CalcuDistance(object[] datas)
     {
         if(_gameOver) return;
-        _distance = 3 * Time.time;
+        _distance = 3 * (_time += Time.deltaTime);
         Observer.Notify("UpdateDistanceText", _distance);
     }
     void GameOver(object[] datas)
