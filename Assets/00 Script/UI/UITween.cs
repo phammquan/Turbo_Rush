@@ -29,19 +29,18 @@ public class UITween : MonoBehaviour
         _openShop = false;
         _btnShop.onClick.AddListener(() =>
         {
-            Debug.Log("Shop");
             if (LeanTween.isTweening())
                 return;
             _UIShop.gameObject.SetActive(_openShop ? false : true);
-            LeanTween.moveLocalY(_NameInGame.gameObject, _openShop ? posName.y : posName.y + 190, 0.5f).setEase(EaseType);
-            LeanTween.scale(_inforShop, _openShop ? new Vector3(0, 0, 0) : new Vector3(1, 1, 1), 1f).setEase(EaseType);
+            LeanTween.moveLocalY(_NameInGame.gameObject, _openShop ? posName.y : posName.y + 190, .5f).setEase(EaseType);
+            LeanTween.scale(_inforShop, _openShop ? new Vector3(0, 0, 0) : new Vector3(1, 1, 1), .6f).setEase(EaseType);
 
             _cameraZ = _openShop ? -10 : -7;
             LeanTween.moveLocalZ(Camera.main.gameObject, _cameraZ, 0.5f).setEase(EaseType);
-            LeanTween.moveLocalY(_buttonPlay.gameObject, _openShop ? posPlay.y : posPlay.y - 450, 0.5f).setEase(EaseType);
-            LeanTween.moveLocalY(_buttonBuy.gameObject, _openShop ? posBuy.y : posBuy.y - 450, 0.6f).setEase(EaseType);
-            LeanTween.moveLocalX(_buttonBack.gameObject, _openShop ? posBack.x : posBack.x + 500, 0.5f).setEase(EaseType);
-            LeanTween.moveLocalX(_buttonNext.gameObject, _openShop ? posNext.x : posNext.x - 500, 0.5f).setEase(EaseType);
+            LeanTween.moveLocalY(_buttonPlay.gameObject, _openShop ? posPlay.y : posPlay.y - 450, .5f).setEase(EaseType);
+            LeanTween.moveLocalY(_buttonBuy.gameObject, _openShop ? posBuy.y : posBuy.y - 450, .6f).setEase(EaseType);
+            LeanTween.moveLocalX(_buttonBack.gameObject, _openShop ? posBack.x : posBack.x + 500, .5f).setEase(EaseType);
+            LeanTween.moveLocalX(_buttonNext.gameObject, _openShop ? posNext.x : posNext.x - 500, .5f).setEase(EaseType);
             _openShop = !_openShop;
         });
     }

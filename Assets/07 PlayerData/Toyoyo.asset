@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 5
   unLock: 0
+  Hp: 80
+  Speed: 3.5

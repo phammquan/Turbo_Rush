@@ -21,8 +21,8 @@ public class UIChangeModel : MonoBehaviour
 
     void Awake()
     {
-        Observer.Notify("ChangeModel", _selectionIndex);
         Observer.AddListener("CheckUnlock", CheckUnlock);
+        Observer.Notify("ChangeModel", _selectionIndex);
         _textDiamond.text = PlayerPrefs.GetInt("Diamond").ToString();
         _selectionIndex = 0;
         _buttonBack.onClick.AddListener(Back);

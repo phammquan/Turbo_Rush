@@ -7,5 +7,7 @@ public class SOPlayerData : ScriptableObject
 {
     public int price;
     public bool unLock;
+    public int Hp;
+    public float Speed;
     
 }
