@@ -16,3 +16,4 @@ MonoBehaviour:
   unLock: 1
   Hp: 40
   Speed: 3
+  SpeedRotation: 120

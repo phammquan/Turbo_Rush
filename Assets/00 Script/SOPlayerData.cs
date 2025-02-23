@@ -9,5 +9,6 @@ public class SOPlayerData : ScriptableObject
     public bool unLock;
     public int Hp;
     public float Speed;
+    public float SpeedRotation;
     
 }

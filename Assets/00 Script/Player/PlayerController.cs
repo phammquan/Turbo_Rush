@@ -1,22 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITakeDamge
 {
-    [SerializeField] float _speed ;
+    [SerializeField] private int _hp;
+    [SerializeField] float _speed;
     private Vector3 _direction;
     private bool right = true;
-    [SerializeField] float _speedRotation = 100f;
+    [SerializeField] float _speedRotation;
     [Space] public bool gameOver;
     private bool gameRuning = false;
+    private SOPlayerData _playerData;
 
-    void Start()
+    void Awake()
+    {
+        Observer.AddListener("GetData", UpdateDataPlayer);
+        
+    }
+
+    private void Start()
     {
         gameOver = false;
         _direction = transform.forward;
     }
 
+    private void UpdateDataPlayer(object[] obj)
+    {
+        _playerData = (SOPlayerData)obj[0];
+        _speed = _playerData.Speed;
+        _hp = _playerData.Hp;
+        Observer.Notify("UpdateHP", _hp);
+        _speedRotation = _playerData.SpeedRotation;
+
+        
+    }
     void Update()
     {
         InputControler();
@@ -88,5 +107,20 @@ public class PlayerController : MonoBehaviour
         gameOver = (raysHitPlatform == 0);
         Observer.Notify("GameOver", gameOver);
     }
-    
+
+    public void TakeDamage(int damage)
+    {
+        if(_hp > 0)
+        {
+            _hp -= damage;
+            Observer.Notify("UpdateHP", _hp);
+            if(_hp <= 0)
+            {
+                _hp = 0;
+                Observer.Notify("UpdateHP", _hp);
+                gameOver = true;
+                Observer.Notify("GameOver", gameOver);
+            }
+        }
+    }
 }
