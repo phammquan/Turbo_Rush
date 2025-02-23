@@ -34,6 +34,11 @@ public class TrapCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            ITakeDamge _isCanTakeDmg = other.gameObject.GetComponent<ITakeDamge>();
+            if(_isCanTakeDmg != null)   
+            {
+                _isCanTakeDmg.TakeDamage(10);
+            }
             foreach (ContactPoint contact in other.contacts)
             {
                 Vector3 collisionPoint = contact.point;

@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _diamondText;
     [SerializeField]  TextMeshProUGUI _distanceText;
     [SerializeField] Slider _hp;
+    private bool _maxhp = false;
     void Awake()
     {
         Observer.AddListener("UpdateDiamondText", UpdateDiamondCount);
@@ -19,14 +20,25 @@ public class UIManager : MonoBehaviour
 
     private void UpdateHP(object[] obj)
     {
-        _hp.maxValue = (int)obj[0];
-        Debug.Log(obj[0]);
+        if (!_maxhp)
+        {
+            _hp.maxValue = (int)obj[0];
+            _maxhp = true;            
+        }
         _hp.value = (int)obj[0];
+        LeanTween.scale(_hp.gameObject, new Vector3(1.5f, 1.5f, 1.5f), 0.2f).setOnComplete(() =>
+        {
+            LeanTween.scale(_hp.gameObject, new Vector3(2f, 2f, 2f), 0.2f);
+        });
     }
 
     void UpdateDiamondCount(object[] datas)
     {
         _diamondText.text = datas[0].ToString();
+        LeanTween.scale(_diamondText.gameObject, new Vector3(1.5f, 1.5f, 1.5f), 0.2f).setOnComplete(() =>
+        {
+            LeanTween.scale(_diamondText.gameObject, new Vector3(1f, 1f, 1f), 0.2f);
+        });
     }
     void UpdateDistanceText(object[] datas)
     {

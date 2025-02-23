@@ -6,13 +6,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, ITakeDamge
 {
     [SerializeField] private int _hp;
+    private int _hpcheck;
     [SerializeField] float _speed;
     private Vector3 _direction;
     private bool right = true;
     [SerializeField] float _speedRotation;
     [Space] public bool gameOver;
     private bool gameRuning = false;
+    private bool _isGrounded;
     private SOPlayerData _playerData;
+    [SerializeField] GameObject _explosion;
+    [SerializeField] GameObject _burning;
+
 
     void Awake()
     {
@@ -22,6 +27,7 @@ public class PlayerController : MonoBehaviour, ITakeDamge
 
     private void Start()
     {
+        _isGrounded = true;
         gameOver = false;
         _direction = transform.forward;
     }
@@ -32,6 +38,7 @@ public class PlayerController : MonoBehaviour, ITakeDamge
         _speed = _playerData.Speed;
         _hp = _playerData.Hp;
         Observer.Notify("UpdateHP", _hp);
+        _hpcheck = _hp/2;
         _speedRotation = _playerData.SpeedRotation;
 
         
@@ -40,7 +47,8 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     {
         InputControler();
         Move();
-        checkGameOver();
+        if(_isGrounded)
+            checkGameOver();
     }
 
     void InputControler()
@@ -104,23 +112,41 @@ public class PlayerController : MonoBehaviour, ITakeDamge
                 }
             }
         }
-        gameOver = (raysHitPlatform == 0);
+        _isGrounded = !(raysHitPlatform == 0);
+        if(!_isGrounded)
+        {
+            Debug.Log("Game Over");
+            gameOver = true;
+            StartCoroutine(DelayExplosion());
+        }
         Observer.Notify("GameOver", gameOver);
     }
 
     public void TakeDamage(int damage)
     {
+        Debug.Log(_hpcheck);
         if(_hp > 0)
         {
             _hp -= damage;
             Observer.Notify("UpdateHP", _hp);
+            if(_hp <= _hpcheck)
+                _burning.SetActive(true);
             if(_hp <= 0)
             {
+                StartCoroutine(DelayExplosion());
                 _hp = 0;
                 Observer.Notify("UpdateHP", _hp);
                 gameOver = true;
                 Observer.Notify("GameOver", gameOver);
             }
         }
+    }
+    IEnumerator DelayExplosion()
+    {
+        
+        yield return new WaitForSeconds(.5f);
+        _explosion.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        this.gameObject.SetActive(false);
     }
 }
