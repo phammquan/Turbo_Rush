@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     private float _distance = 0;
     private int _diamondData = 0;
     private float _time = 0;
-
+    
     
     void Start()
     {
@@ -20,6 +20,7 @@ public class GameManager : Singleton<GameManager>
         Observer.AddListener("ContinueGame", ContinueGame);
         Observer.AddListener("DiamondCount", DiamondCount);
         Observer.AddListener("GameOver", GameOver);
+        Observer.AddListener("PauseGame", PauseGame);
     }
 
     private void Update()
@@ -30,6 +31,10 @@ public class GameManager : Singleton<GameManager>
     void ContinueGame(object[] datas)
     {
         Time.timeScale = 1f;
+    }
+    void PauseGame(object[] datas)
+    {
+        Time.timeScale = 0f;
     }
     void DiamondCount(object[] datas)
     {
