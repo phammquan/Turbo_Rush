@@ -60,9 +60,10 @@ public class GameManager : Singleton<GameManager>
     {
         Debug.Log("GameOver");
         _gameOver = (bool)datas[0];
+        _diamondData = PlayerPrefs.GetInt("Diamond");
         _diamondData += PlayerPrefs.GetInt("DiamondCount");
         PlayerPrefs.SetInt("Diamond", _diamondData);
-        
+        PlayerPrefs.Save();
         
     }
 }
