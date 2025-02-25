@@ -17,6 +17,10 @@ public class ShopSystem : Singleton<ShopSystem>
             _carDictionary[i] = _listPrice[i];
         }
     }
+    void OnDestroy()
+    {
+        Observer.RemoveListener("Buy", Buy);
+    }
 
     private void Buy(object[] datas)
     {

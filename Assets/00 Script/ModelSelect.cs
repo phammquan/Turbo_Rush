@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,11 @@ public class ModelSelect : MonoBehaviour
             Observer.Notify("CheckUnlock", _unLock);
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        Observer.RemoveListener("ChangeModel", Select);
     }
 
     public void Select(object[] datas)

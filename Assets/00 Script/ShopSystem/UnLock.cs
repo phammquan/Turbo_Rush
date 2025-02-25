@@ -16,7 +16,12 @@ public class UnLock : MonoBehaviour
         price = playerData.price;
         Observer.AddListener("BuyComplete", UpdateUnlock);
     }
-    
+
+    private void OnDestroy()
+    {
+        Observer.RemoveListener("BuyComplete", UpdateUnlock);
+    }
+
     private void UpdateUnlock(object[] obj)
     {
         int purchasedIndex = (int)obj[0];

@@ -9,6 +9,10 @@ public class SpawnDiamond : MonoBehaviour
     {
         Observer.AddListener("SpawnDiamond", spawnDiamond);
     }
+    void OnDestroy()
+    {
+        Observer.RemoveListener("SpawnDiamond", spawnDiamond);
+    }
 
     void spawnDiamond(object[] datas)
     {

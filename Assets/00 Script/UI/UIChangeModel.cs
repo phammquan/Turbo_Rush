@@ -33,6 +33,10 @@ public class UIChangeModel : MonoBehaviour
         });
         _buttonBuy.onClick.AddListener(Buy);
     }
+    void OnDestroy()
+    {
+        Observer.RemoveListener("CheckUnlock", CheckUnlock);
+    }
 
     void Back()
     {

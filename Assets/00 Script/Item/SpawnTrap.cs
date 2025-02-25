@@ -10,6 +10,10 @@ public class SpawnTrap : MonoBehaviour
     {
         Observer.AddListener("SpawnTrap", spawnTrap);
     }
+    void OnDestroy()
+    {
+        Observer.RemoveListener("SpawnTrap", spawnTrap);
+    }
 
     void spawnTrap(object[] datas)
     {

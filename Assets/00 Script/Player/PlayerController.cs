@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     private bool right = true;
     [SerializeField] float _speedRotation;
     [Space] public bool gameOver;
-    private bool gameRuning = false;
     private bool _isGrounded;
     private SOPlayerData _playerData;
     [SerializeField] GameObject _explosion;
@@ -23,6 +22,11 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     {
         Observer.AddListener("GetData", UpdateDataPlayer);
         
+    }
+
+    private void OnDestroy()
+    {
+        Observer.RemoveListener("GetData", UpdateDataPlayer);
     }
 
     private void Start()
@@ -55,8 +59,6 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     {
         if (Input.touchCount > 0 && !gameOver)
         {
-            gameRuning = true;
-            Observer.Notify("ContinueGame", gameRuning);
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Stationary)
             {
@@ -115,11 +117,10 @@ public class PlayerController : MonoBehaviour, ITakeDamge
         _isGrounded = !(raysHitPlatform == 0);
         if(!_isGrounded)
         {
-            Debug.Log("Game Over");
             gameOver = true;
             StartCoroutine(DelayExplosion());
+            Observer.Notify("GameOver", gameOver);
         }
-        Observer.Notify("GameOver", gameOver);
     }
 
     public void TakeDamage(int damage)
