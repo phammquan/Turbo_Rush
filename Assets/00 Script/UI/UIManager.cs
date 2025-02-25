@@ -6,24 +6,37 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager : MonoBehaviour
 {
+
+    [Header("Button InGame")]
     [SerializeField] Button _buttonPlayPause;
     [SerializeField] bool _isPause = false;
     [SerializeField] private List<Button> _listFnButton;
     [SerializeField] private LeanTweenType EseType;
+    [SerializeField] GameObject _panelGameOver;
     [Space] [SerializeField] TextMeshProUGUI _diamondText;
     [SerializeField] TextMeshProUGUI _distanceText;
     [SerializeField] Slider _hp;
     private bool _maxhp = false;
     private float _distanceBtn;
     private float _timeBtn;
-
+    public static UIManager Instance { get; private set; }
+    
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         Observer.AddListener("UpdateDiamondText", UpdateDiamondCount);
         Observer.AddListener("UpdateDistanceText", UpdateDistanceText);
         Observer.AddListener("UpdateHP", UpdateHP);
+        Observer.AddListener("GameOver", UpdateGameOver);
     }
 
     private void OnDestroy()
@@ -31,6 +44,17 @@ public class UIManager : Singleton<UIManager>
         Observer.RemoveListener("UpdateDiamondText", UpdateDiamondCount);
         Observer.RemoveListener("UpdateDistanceText", UpdateDistanceText);
         Observer.RemoveListener("UpdateHP", UpdateHP);
+        Observer.RemoveListener("GameOver", UpdateGameOver);
+
+    }
+
+    private void UpdateGameOver(object[] obj)
+    {
+        _panelGameOver.SetActive(true);
+        LeanTween.scale(_panelGameOver, new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setEase(EseType).setOnComplete(() =>
+        {
+            LeanTween.scale(_panelGameOver, new Vector3(1f, 1f, 1f), 0.2f);
+        });
     }
 
     private void Start()
@@ -122,11 +146,11 @@ public class UIManager : Singleton<UIManager>
         StartCoroutine(DelayPause());
     }
 
-    void RePlay()
+    public void RePlay()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    void Home()
+    public void Home()
     {
         SceneManager.LoadScene("Menu");
     }

@@ -58,12 +58,15 @@ public class GameManager : Singleton<GameManager>
     }
     void GameOver(object[] datas)
     {
-        Debug.Log("GameOver");
         _gameOver = (bool)datas[0];
         _diamondData = PlayerPrefs.GetInt("Diamond");
         _diamondData += PlayerPrefs.GetInt("DiamondCount");
         PlayerPrefs.SetInt("Diamond", _diamondData);
         PlayerPrefs.Save();
-        
+        Observer.Notify("UpdateResult", _distance, (float)_diamondCount);
+    }
+    public void CheckSingleTon()
+    {
+        Debug.Log("CheckSingleTon");
     }
 }
