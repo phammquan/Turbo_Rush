@@ -82,7 +82,6 @@ public class GameOver : MonoBehaviour
         if (!(datas[0] is float distance)) distance = Convert.ToSingle(datas[0]);
         if (!(datas[1] is float diamonds)) diamonds = Convert.ToSingle(datas[1]);
 
-        // Hiển thị khoảng cách với hiệu ứng scale
         LeanTween.value(0, distance, 0.5f).setOnUpdate((float val) =>
         {
             _DistanceTotal.text = Math.Round(val) + "m";
