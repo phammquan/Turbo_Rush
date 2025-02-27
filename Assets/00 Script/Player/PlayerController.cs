@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     public void TakeDamage(int damage)
     {
         Debug.Log(_hpcheck);
-        if(_hp > 0)
+        if(_hp > 0 && _isGrounded)
         {
             _hp -= damage;
             Observer.Notify("UpdateHP", _hp);

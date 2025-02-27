@@ -34,6 +34,7 @@ public class TrapCtrl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            SoundController.Instance.SFXPlay("Hit");
             ITakeDamge _isCanTakeDmg = other.gameObject.GetComponent<ITakeDamge>();
             if(_isCanTakeDmg != null)   
             {

@@ -12,12 +12,19 @@ public class UIChangeModel : MonoBehaviour
     [SerializeField] Button _buttonNext;
     [SerializeField] Button _buttonPlay;
     [SerializeField] Button _buttonBuy;
+    [SerializeField] Button _buttonsetting;
+    [SerializeField] GameObject _panelSetting;
+    public LeanTweenType EseType;
+
+
+
     
     [Space]
     [Header("Text")]
     [SerializeField] TextMeshProUGUI _textDiamond;
     private int _selectionIndex;
     [SerializeField] int _maxIndex;
+    private bool _isSetting;
 
     void Awake()
     {
@@ -29,9 +36,12 @@ public class UIChangeModel : MonoBehaviour
         _buttonNext.onClick.AddListener(Next);
         _buttonPlay.onClick.AddListener(() =>
         {
+            SoundController.Instance.musicSource.Stop();
+            SoundController.Instance.SFXPlay("Button");
             SceneManager.LoadScene("Game");
         });
         _buttonBuy.onClick.AddListener(Buy);
+        _buttonsetting.onClick.AddListener(Setting);
     }
     void OnDestroy()
     {
@@ -40,6 +50,7 @@ public class UIChangeModel : MonoBehaviour
 
     void Back()
     {
+        SoundController.Instance.SFXPlay("Button");
         Debug.Log("Back");
         if (_selectionIndex == 0)
         {
@@ -58,6 +69,7 @@ public class UIChangeModel : MonoBehaviour
 
     void Next()
     {
+        SoundController.Instance.SFXPlay("Button");
         Debug.Log("Next");
         if (_selectionIndex == _maxIndex)
         {
@@ -90,9 +102,29 @@ public class UIChangeModel : MonoBehaviour
 
     void Buy()
     {
+        SoundController.Instance.SFXPlay("Button");
         Observer.Notify("Buy", _selectionIndex);
         _textDiamond.text = PlayerPrefs.GetInt("Diamond").ToString();
         Observer.Notify("ChangeModel", _selectionIndex);
     }
-    
+    public void Setting()
+    {
+        _isSetting = !_isSetting;
+        if (_isSetting)
+        {
+            SoundController.Instance.SFXPlay("Popup Open");
+            LeanTween.scale(_panelSetting, new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setEase(EseType)
+                .setIgnoreTimeScale(true).setOnComplete(() =>
+                {
+                    LeanTween.scale(_panelSetting, new Vector3(1f, 1f, 1f), 0.2f).setIgnoreTimeScale(true);
+                });
+        }
+
+        else
+        {
+            SoundController.Instance.SFXPlay("Popup Close");
+            LeanTween.scale(_panelSetting, new Vector3(0f, 0f, 0f), 0.5f).setEase(EseType).setIgnoreTimeScale(true);
+        }
+    }
+
 }

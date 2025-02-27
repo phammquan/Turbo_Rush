@@ -8,12 +8,14 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Button InGame")] [SerializeField]
+    Button _buttonPlayPause;
 
-    [Header("Button InGame")]
-    [SerializeField] Button _buttonPlayPause;
-    [SerializeField] bool _isPause = false;
+    bool _isPause = false;
+    bool _isSetting = false;
     [SerializeField] private List<Button> _listFnButton;
     [SerializeField] private LeanTweenType EseType;
+    [Header("Panel")] [SerializeField] GameObject _panelSetting;
     [SerializeField] GameObject _panelGameOver;
     [Space] [SerializeField] TextMeshProUGUI _diamondText;
     [SerializeField] TextMeshProUGUI _distanceText;
@@ -22,7 +24,7 @@ public class UIManager : MonoBehaviour
     private float _distanceBtn;
     private float _timeBtn;
     public static UIManager Instance { get; private set; }
-    
+
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +35,7 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         Observer.AddListener("UpdateDiamondText", UpdateDiamondCount);
         Observer.AddListener("UpdateDistanceText", UpdateDistanceText);
         Observer.AddListener("UpdateHP", UpdateHP);
@@ -45,11 +48,12 @@ public class UIManager : MonoBehaviour
         Observer.RemoveListener("UpdateDistanceText", UpdateDistanceText);
         Observer.RemoveListener("UpdateHP", UpdateHP);
         Observer.RemoveListener("GameOver", UpdateGameOver);
-
     }
 
     private void UpdateGameOver(object[] obj)
     {
+        SoundController.Instance.musicSource.Stop();
+        SoundController.Instance.SFXPlay("GameOver");
         _panelGameOver.SetActive(true);
         LeanTween.scale(_panelGameOver, new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setEase(EseType).setOnComplete(() =>
         {
@@ -62,7 +66,27 @@ public class UIManager : MonoBehaviour
         _buttonPlayPause.onClick.AddListener(Pause);
         _listFnButton[2].onClick.AddListener(RePlay);
         _listFnButton[1].onClick.AddListener(Home);
+        _listFnButton[0].onClick.AddListener(Setting);
+    }
 
+    public void Setting()
+    {
+        _isSetting = !_isSetting;
+        if (_isSetting)
+        {
+            SoundController.Instance.SFXPlay("Popup Open");
+            LeanTween.scale(_panelSetting, new Vector3(1.2f, 1.2f, 1.2f), 0.5f).setEase(EseType)
+                .setIgnoreTimeScale(true).setOnComplete(() =>
+                {
+                    LeanTween.scale(_panelSetting, new Vector3(1f, 1f, 1f), 0.2f).setIgnoreTimeScale(true);
+                });
+        }
+
+        else
+        {
+            SoundController.Instance.SFXPlay("Popup Close");
+            LeanTween.scale(_panelSetting, new Vector3(0f, 0f, 0f), 0.5f).setEase(EseType).setIgnoreTimeScale(true);
+        }
     }
 
     private void UpdateHP(object[] obj)
@@ -72,6 +96,7 @@ public class UIManager : MonoBehaviour
             Debug.LogError("Slider _hp đã bị hủy.");
             return;
         }
+
         if (!_maxhp)
         {
             _hp.maxValue = (int)obj[0];
@@ -107,6 +132,10 @@ public class UIManager : MonoBehaviour
         _buttonPlayPause.interactable = false;
         _distanceBtn = 240 * 3;
         _timeBtn = .5f;
+        if (_isSetting)
+        {
+            Setting();
+        }
 
         if (_isPause)
         {
@@ -150,6 +179,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void Home()
     {
         SceneManager.LoadScene("Menu");

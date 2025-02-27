@@ -25,6 +25,8 @@ public class CountDown : MonoBehaviour
         }
         _countDown.text = "GO!";
         Observer.Notify("ContinueGame");
+        int a = Random.Range(1, 3);
+        SoundController.Instance.PlayMusic("Game" + a);
         yield return new WaitForSeconds(.5f);
         this.gameObject.SetActive(false);
     }

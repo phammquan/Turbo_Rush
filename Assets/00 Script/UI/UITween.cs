@@ -29,6 +29,7 @@ public class UITween : MonoBehaviour
         _openShop = false;
         _btnShop.onClick.AddListener(() =>
         {
+            SoundController.Instance.SFXPlay("Button");
             if (LeanTween.isTweening())
                 return;
             _UIShop.gameObject.SetActive(_openShop ? false : true);

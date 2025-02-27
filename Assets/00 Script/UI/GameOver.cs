@@ -33,6 +33,10 @@ public class GameOver : MonoBehaviour
         {
             UIManager.Instance.Home();
         });
+        _setting.onClick.AddListener(() =>
+        {
+            UIManager.Instance.Setting();
+        });
         _panel.SetActive(true);
         LeanTween.scale(_panel.gameObject, new Vector3(1.5f, 1.5f, 1.5f), 0.75f).setEase(EaseType).setOnComplete(() =>
         {

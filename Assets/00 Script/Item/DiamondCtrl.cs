@@ -17,6 +17,7 @@ public class DiamondCtrl : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            SoundController.Instance.SFXPlay("Collect");
             Observer.Notify("DiamondCount");
             GameObject vfx = Object_Pooling.Instance.GetPrefabs(VFX);
             vfx.transform.position = this.transform.position;
