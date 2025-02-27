@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour, ITakeDamge
 {
     [SerializeField] private int _hp;
@@ -144,8 +145,9 @@ public class PlayerController : MonoBehaviour, ITakeDamge
     }
     IEnumerator DelayExplosion()
     {
-        
         yield return new WaitForSeconds(.5f);
+        int a = UnityEngine.Random.Range(1, 3);
+        SoundController.Instance.SFXPlay("Explo" + a);
         _explosion.SetActive(true);
         yield return new WaitForSeconds(1f);
         this.gameObject.SetActive(false);
