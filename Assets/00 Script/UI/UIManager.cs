@@ -177,12 +177,16 @@ public class UIManager : MonoBehaviour
 
     public void RePlay()
     {
+        SoundController.Instance.musicSource.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void Home()
     {
+        SoundController.Instance.musicSource.Stop();
         SceneManager.LoadScene("Menu");
+        Observer.Notify("ContinueGame");
+        SoundController.Instance.PlayMusic("Theme");
     }
 
     IEnumerator DelayPause()
