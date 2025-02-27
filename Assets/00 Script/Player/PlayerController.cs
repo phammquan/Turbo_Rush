@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour, ITakeDamge
             }
         }
         _isGrounded = !(raysHitPlatform == 0);
-        if(!_isGrounded)
+        if(!_isGrounded && _hp > 0)
         {
             gameOver = true;
             StartCoroutine(DelayExplosion());
