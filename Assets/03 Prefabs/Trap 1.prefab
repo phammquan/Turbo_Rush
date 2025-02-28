@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 100
   _vfx: {fileID: 4080545251383072913, guid: a6d2c5c7eb22cf44d926a76879523e1d, type: 3}
+  _bounceForce: 5
 --- !u!54 &7888377555869747762
 Rigidbody:
   m_ObjectHideFlags: 0
