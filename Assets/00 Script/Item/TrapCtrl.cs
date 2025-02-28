@@ -37,7 +37,7 @@ public class TrapCtrl : MonoBehaviour, ITrap
         if (other.gameObject.CompareTag("Player"))
         {
             SoundController.Instance.SFXPlay("Hit");
-            Damge(other);
+            Damage(other);
             Force(other);
             VFX(other);
             
@@ -77,7 +77,7 @@ public class TrapCtrl : MonoBehaviour, ITrap
         }
     }
 
-    public void Damge(Collision others)
+    public void Damage(Collision others)
     {
         ITakeDamge _isCanTakeDmg = others.gameObject.GetComponent<ITakeDamge>();
         if(_isCanTakeDmg != null)   

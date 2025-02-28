@@ -6,5 +6,5 @@ public interface ITrap
 {
     void Force(Collision others);
     void VFX(Collision others);
-    void Damge(Collision others);
+    void Damage(Collision others);
 }

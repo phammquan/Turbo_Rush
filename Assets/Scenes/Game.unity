@@ -837,6 +837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _trap: {fileID: 8950445838271360023, guid: 0165d30d6d698d14ca6213038d7cc84e, type: 3}
+  _boom: {fileID: 4167774734331947600, guid: 81f73e75435d15144bf6179052708c63, type: 3}
 --- !u!4 &243732590
 Transform:
   m_ObjectHideFlags: 0

@@ -4786,6 +4786,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _velocity: 80
   _vfx: {fileID: 0}
+  _force: 0
 --- !u!1 &1440085825
 GameObject:
   m_ObjectHideFlags: 0

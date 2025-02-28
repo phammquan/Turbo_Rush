@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, ITakeDamge
 {
     [SerializeField] private int _hp;
+    public int Hp => _hp;
     private int _hpcheck;
     [SerializeField] float _speed;
     private Vector3 _direction;
