@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BoomCtrl : MonoBehaviour, ITrap
 {
-    [SerializeField] private float _force = 20f;
+    [SerializeField] private float _force;
     [SerializeField] private GameObject _vfxboom;
      
     void Update()
@@ -46,7 +46,7 @@ public class BoomCtrl : MonoBehaviour, ITrap
             Vector3 direction = others.contacts[0].point - transform.position;
             direction.y = 0; 
             direction.Normalize();
-            
+            direction.y = 1f;
             playerRb.AddForce(direction * _force, ForceMode.Impulse);
         }
     }

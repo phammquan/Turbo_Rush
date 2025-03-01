@@ -9703,7 +9703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aca355962e133647867c26089205eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 20
+  _force: 10
   _vfxboom: {fileID: 2367893990182947063, guid: 32c4aaf1ab8d7d247b4a2ce4305bdebf, type: 3}
 --- !u!135 &3165147531529414572
 SphereCollider:
@@ -14648,6 +14648,7 @@ GameObject:
   - component: {fileID: 8450650412727762761}
   - component: {fileID: 8860922948630138739}
   - component: {fileID: 4601805665060227675}
+  - component: {fileID: 6518730090528732583}
   m_Layer: 0
   m_Name: avt
   m_TagString: Untagged
@@ -14722,6 +14723,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &6518730090528732583
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5920401386676235022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 270c2b021377168489bd92503aba9638, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6569713477817641686
 GameObject:
   m_ObjectHideFlags: 0
