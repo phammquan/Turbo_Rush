@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Landy Roamer
   m_EditorClassIdentifier: 
   price: 3
-  unLock: 1
+  unLock: 0
   Hp: 70
   Speed: 3
   SpeedRotation: 120

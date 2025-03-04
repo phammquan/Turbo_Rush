@@ -25,7 +25,7 @@ public class UnLock : MonoBehaviour
     private void UpdateUnlock(object[] obj)
     {
         int purchasedIndex = (int)obj[0];
-        if (gameObject == ShopSystem.Instance.GetCarByIndex(purchasedIndex))
+        if (this.gameObject == ShopSystem.Instance.GetCarByIndex(purchasedIndex))
         {
             unLock = true;
             playerData.unLock = true;

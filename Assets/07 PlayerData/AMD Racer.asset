@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AMD Racer
   m_EditorClassIdentifier: 
   price: 10
-  unLock: 0
+  unLock: 1
   Hp: 40
   Speed: 4
   SpeedRotation: 200
